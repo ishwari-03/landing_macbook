@@ -1,0 +1,311 @@
+/*  
+  Windows-Optimized index.css  
+  Target display: 1920x1200 (non-retina Windows laptop)  
+  - Simplified breakpoints (no Retina assumptions)  
+  - Fixed navbar alignment, spacing, and font sizing  
+  - Defined missing color variables  
+  - Removed extreme transforms and 2xl-only scaling  
+  - Keeps Tailwind utilities (@apply)  
+*/
+
+@import "tailwindcss";
+
+/* --- Custom fonts (keep your font files) --- */
+@font-face { font-family: "Regular"; src: url("/fonts/regular.otf") format("opentype"); }
+@font-face { font-family: "Medium"; src: url("/fonts/medium.otf") format("opentype"); }
+@font-face { font-family: "SemiBold"; src: url("/fonts/semibold.otf") format("opentype"); }
+@font-face { font-family: "Bold"; src: url("/fonts/bold.otf") format("opentype"); }
+
+/* --- Root color system (explicit, no undefined vars) --- */
+:root {
+  --color-primary: #0071e3;
+  --color-dark-100: #E5E7EB; /* light text */
+  --color-dark-200: #2e2e30;
+  --color-light-100: #adb5bd;
+  --bg-dark: #000000;
+  --container-max: 1200px; /* windows-friendly width */
+}
+
+/* ----- Global reset ----- */
+* { box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html { overflow-x: hidden; scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--color-dark-100);
+  font-family: var(--font-semibold), "Segoe UI", Roboto, system-ui, -apple-system;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  scrollbar-color: rgba(255,255,255,0.18) rgba(0,0,0,0.6);
+}
+
+/* ----- Utility helpers ----- */
+@layer utilities {
+  .flex-center { @apply flex items-center justify-center; }
+  .flex-between { @apply flex items-center justify-between; }
+  .col-center { @apply flex flex-col items-center justify-center; }
+}
+
+/* ----------------------------
+   WINDOWS FRIENDLY COMPONENTS
+----------------------------- */
+@layer components {
+
+  /* NAVBAR FIXED FOR WINDOWS */
+/* NAVBAR */
+header {
+  width: 100%;
+  height: 60px;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+ 
+  top: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+}
+
+header nav {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+/* Logo bigger */
+header nav .logo {
+  width: 32px;
+  height: auto;
+}
+
+/* LABELS (Desktop only) */
+header nav .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Hide labels on mobile */
+@media (max-width: 900px) {
+  header nav .nav-links {
+    display: none;
+  }
+}
+
+header nav .nav-links li a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.9);
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+
+header nav .nav-links li a:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ICONS */
+header nav .icons {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+header nav .icons button {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+header nav .icons .icon {
+  width: 32px;
+  height: auto;
+  opacity: 0.85;
+  transition: 0.2s ease;
+}
+
+/* ICON hover / touch feedback */
+header nav .icons .icon:hover,
+header nav .icons .icon:active {
+  opacity: 1;
+  transform: scale(1.15);
+}
+main, section, .content-area {
+  padding-top: 80px; /* 60px navbar + 20px breathing */
+}
+
+#hero img {
+  max-width: 450px;     /* reduced size */
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+}
+
+#hero video {
+  width: 70%;           /* reduce video width */
+  max-width: 800px;     /* windows-friendly size */
+  margin: 20px auto 0;
+  display: block;
+  border-radius: 12px;  /* optional */
+  object-fit: contain;  /* prevents stretching */
+}
+
+  /* ==================
+      HERO SECTION
+     ================== */
+  #hero {
+    padding-top: 80px;
+    @apply flex flex-col items-center text-center gap-4;
+  }
+
+  #hero h1 {
+    font-size: 36px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    font-weight: 700;
+  }
+
+  #hero p {
+    max-width: 900px;
+    font-size: 16px;
+    color: var(--color-light-100);
+    padding: 0 12px;
+  }
+
+  /* ======================
+      PRODUCT VIEWER
+     ====================== */
+ /* PRODUCT VIEWER — COLOR & SIZE CONTROLS */
+#product-viewer .controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Color control wrapper */
+#product-viewer .color-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1f1f1f;
+  padding: 12px 24px;
+  border-radius: 999px;
+}
+
+/* Individual color dots */
+#product-viewer .color-control div {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Active dot ring */
+#product-viewer .color-control .active {
+  outline: 3px solid white;
+  outline-offset: 3px;
+  transform: scale(1.1);
+}
+
+/* SIZE CONTROL */
+#product-viewer .size-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1f1f1f;
+  padding: 10px 20px;
+  border-radius: 999px;
+}
+
+/* Size buttons */
+#product-viewer .size-control div {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border-radius: 50%;
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Active size button */
+#product-viewer .size-control .active {
+  background: #0071e3;
+  color: white;
+  transform: scale(1.1);
+}
+
+
+  /* ======================
+      SHOWCASE / PERFORMANCE
+     ====================== */
+  #showcase .media img,
+  #showcase .media video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  #showcase .mask img {
+    transform: none;
+    max-width: 120%;
+  }
+
+  #performance .wrapper {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* ======================
+      HIGHLIGHTS GRID
+     ====================== */
+  #highlights .masonry {
+    display: grid;
+    gap: 20px;
+    padding: 0 24px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 900px) {
+    #highlights .masonry {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ======================
+      FOOTER
+     ====================== */
+  footer {
+    padding: 40px 24px;
+    color: var(--color-light-100);
+  }
+
+  footer .links ul {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
