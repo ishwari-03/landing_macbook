@@ -12,7 +12,7 @@ import { useGLTF } from '@react-three/drei';
 import React from 'react'
 
 
-export function Model(props) {
+export default function Macbookmodel16(props) {
   const { nodes, materials } = useGLTF('/models/macbook-transformed.glb');
   return (
     <group {...props} dispose={null}>

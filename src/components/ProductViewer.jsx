@@ -4,10 +4,15 @@ import { clsx } from 'clsx';
 import { Canvas } from '@react-three/fiber';
 import { Box, OrbitControls } from '@react-three/drei';
 import MacBookModel14 from './models/Macbook-14';
-import StudioLights from './StudioLights';
+import StudioLights from './three/StudioLights';
+
+import { useMediaQuery } from 'react-responsive';
+import ModelSwitcher from './three/modelswitcher';
 
 const ProductViewer = () => {
   const { color, scale, setColor, setScale } = useMacBookStore();
+
+  const isMobile = useMediaQuery({query:'(max-width:1024px)'});
 
   return (
     <section id='product-viewer' className="flex flex-col items-center mt-10">
@@ -19,8 +24,8 @@ const ProductViewer = () => {
       <div className="w-full h-[500px] flex justify-center mt-4">
         <Canvas id='canvas' camera={{position:[0,2,5], fov:50, near:0.1,far:100}}>
             <StudioLights />
-            <MacBookModel14 scale={0.06} position={[0,0,0]} />
-            <OrbitControls enableZoom={false}/>
+            
+            <ModelSwitcher scale={isMobile?scale-0.03:scale}/>
         </Canvas>
       </div>
 
@@ -29,7 +34,7 @@ const ProductViewer = () => {
       <div className="controls flex flex-col items-center">
 
         <p className="info text-sm text-white/80">
-          MacBook Pro 16&quot; in {color}
+          MacBook Pro | Available in 14" & 16" 
         </p>
 
         <div className="flex-center gap-5 mt-6">

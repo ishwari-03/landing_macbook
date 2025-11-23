@@ -259,25 +259,125 @@ main, section, .content-area {
 
 
   /* ======================
-      SHOWCASE / PERFORMANCE
+      SHOWCASE SECTION
      ====================== */
-  #showcase .media img,
-  #showcase .media video {
-    max-width: 100%;
+  
+  /* === SHOWCASE (ROCKET CHIP / M4) === */
+
+#showcase {
+  height: 300vh;              /* scroll distance */
+  position: relative;
+  background: #000;
+}
+
+/* Pinned media area */
+#showcase .showcase-media {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Video + mask sizing wrapper */
+#showcase .mask-wrapper {
+  position: relative;
+  width: 60%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/* Video INSIDE mask → same size as logo */
+#showcase .masked-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1); /* animated by GSAP */
+  display: block;
+}
+
+/* Mask logo overlay, same size as video */
+#showcase .mask-logo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+
+  opacity: 0;         /* GSAP animates this */
+  transform: scale(1.2);
+}
+
+/* Content area appears AFTER media */
+#showcase .showcase-content {
+  margin-top: 0;           /* so it starts after the media */
+  opacity: 0;                  /* GSAP animates to 1 */
+  transform: translateY(60px); /* GSAP animates to 0 */
+}
+
+/* Two-column layout */
+#showcase .showcase-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+/* Left text */
+#showcase .showcase-left {
+  max-width: 520px;
+}
+
+/* Right stats */
+#showcase .showcase-right {
+  max-width: 260px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1023px) {
+  #showcase {
     height: auto;
-    display: block;
   }
 
-  #showcase .mask img {
-    transform: none;
-    max-width: 120%;
+  #showcase .showcase-media {
+    position: relative;
+    height: 70vh;
   }
 
-  #performance .wrapper {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 20px;
+  #showcase .mask-wrapper {
+    width: 85%;
   }
+
+  #showcase .showcase-content {
+    margin-top: 2rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #showcase .showcase-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3rem 1.25rem 4rem;
+  }
+
+  #showcase .showcase-left,
+  #showcase .showcase-right {
+    max-width: 100%;
+  }
+
+  #showcase .showcase-right {
+    padding-top: 1rem;
+  }
+}
+
 
   /* ======================
       HIGHLIGHTS GRID
