@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Performance = () => {
+const Performance1 = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
   const sectionRef = useRef(null);
 
@@ -110,4 +110,4 @@ const Performance = () => {
   );
 };
 
-export default Performance;
+export default Performance1;

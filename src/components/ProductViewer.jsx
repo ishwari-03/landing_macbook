@@ -7,7 +7,7 @@ import MacBookModel14 from './models/Macbook-14';
 import StudioLights from './three/StudioLights';
 
 import { useMediaQuery } from 'react-responsive';
-import ModelSwitcher from './three/Modelswitcher';
+import Model from './three/Model';
 
 const ProductViewer = () => {
   const { color, scale, setColor, setScale } = useMacBookStore();
@@ -25,7 +25,7 @@ const ProductViewer = () => {
         <Canvas id='canvas' camera={{position:[0,2,5], fov:50, near:0.1,far:100}}>
             <StudioLights />
             
-            <ModelSwitcher scale={isMobile?scale-0.03:scale}/>
+            <Model scale={isMobile?scale-0.03:scale}/>
         </Canvas>
       </div>
 
