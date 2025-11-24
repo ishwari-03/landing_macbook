@@ -15,7 +15,7 @@ const Showcase = () => {
       scrollTrigger: {
         trigger: "#showcase",
         start: "top top",
-        end: "bottom+=300 top",
+        end: "bottom top",
         scrub: true,
         pin: !isMobile, // no pinning on mobile
       },
@@ -55,10 +55,10 @@ const Showcase = () => {
       </div>
 
       {/* TEXT CONTENT */}
-      <div className="showcase-content opacity-0 translate-y-10 duration-300">
+      <div className="showcase-content opacity-100 translate-y-10 ">
         <div className="showcase-wrapper">
           <div className="showcase-left">
-            <h2 className="text-white font-semibold text-5xl mb-6">
+            <h2 className="text-white font-semibold text-7xl mb-6">
               Rocket Chip.
             </h2>
 

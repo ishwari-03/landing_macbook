@@ -1,4 +1,5 @@
-import { create } from 'zustand'
+// src/store/index.js
+import { create } from 'zustand';
 
 const useMacBookStore = create((set) => ({
   color: '#2e2c2e',
@@ -7,7 +8,16 @@ const useMacBookStore = create((set) => ({
   scale: 0.08,
   setScale: (scale) => set({ scale }),
 
-  reset: () => set({ color: "#2e2c3e", scale: 0.08 })
+  // ✅ video texture state for the MacBook screen
+  texture: '/videos/feature-1.mp4',
+  setTexture: (texture) => set({ texture }),
+
+  reset: () =>
+    set({
+      color: '#2e2c3e',
+      scale: 0.08,
+      texture: '/videos/feature-1.mp4',
+    }),
 }));
 
 export default useMacBookStore;
