@@ -1,18 +1,17 @@
 import { Canvas } from "@react-three/fiber";
 import StudioLights from "./three/StudioLights.jsx";
-import { features } from "../constants/index.js";
-import clsx from "clsx";
+
 import { Suspense } from "react";
 import { Html, PresentationControls } from "@react-three/drei";
 import MacbookModel from "./models/Macbook.jsx";
 import { useMediaQuery } from "react-responsive";
-import useMacbookStore from "../store/index.js";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const Features = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-  const { setTexture } = useMacbookStore();
+  
 
   // TEXT BOX ANIMATIONS (one-by-one fade-in)
   useGSAP(() => {

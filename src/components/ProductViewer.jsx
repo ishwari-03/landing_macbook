@@ -7,7 +7,7 @@ import MacBookModel14 from './models/Macbook-14';
 import StudioLights from './three/StudioLights';
 
 import { useMediaQuery } from 'react-responsive';
-import ModelSwitcher from './three/modelswitcher';
+import ModelSwitcher from './three/Modelswitcher';
 
 const ProductViewer = () => {
   const { color, scale, setColor, setScale } = useMacBookStore();
